@@ -1,0 +1,24 @@
+.checkbox {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  font-size: 22px;
+  user-select: none;
+}
+
+.checkbox input {
+  display: none;
+}
+
+.checkbox span {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 1px solid var(--dark-grayish-blue);
+  /* text-decoration: ; */
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
