@@ -3,8 +3,10 @@ const inputPrincipal = document.getElementById('input');
 const taskList = document.querySelector('.taskList');
 
 window.addEventListener('load', () => {
+  console.log(checkBoxPrincipal.checked);
   checkBoxPrincipal.checked = false;
   inputPrincipal.value = '';
+  console.log(checkBoxPrincipal.checked);
 })
 
 inputPrincipal.addEventListener('keydown', (e) => {
