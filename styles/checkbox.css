@@ -17,8 +17,13 @@
   width: 1.5rem;
   height: 1.5rem;
   border: 1px solid var(--dark-grayish-blue);
-  /* text-decoration: ; */
   border-radius: 50%;
   background-repeat: no-repeat;
   background-position: center;
+}
+
+.task button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
 }

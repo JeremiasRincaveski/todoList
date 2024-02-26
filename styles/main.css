@@ -127,3 +127,7 @@ body {
   margin-bottom: 1rem;
   border-radius: 0 0 3px 3px;
 }
+
+.taskList li:only-of-type > div {
+  border-radius: 3px;
+}
