@@ -1,4 +1,9 @@
+const checkBoxPrincipal = document.getElementById('inputCheck')
+const inputPrincipal = document.getElementById('input');
+const taskList = document.querySelector('.taskList');
+const footer = document.querySelector('.footer');
 const image = "url(\'/images/icon-check.svg\'), linear-gradient(to bottom, hsl(192, 100%, 67%), hsl(280, 87%, 65%))";
+
 
 const adicionaRegra = (elemento) => {
   const div = elemento.querySelector('div');
@@ -8,7 +13,8 @@ const adicionaRegra = (elemento) => {
   const input = div.querySelector(`#${idInput}`);
 
   span.addEventListener('click', () => {
-    if (checkbox.checked == true) {
+    console.log(checkbox.checked);
+    if (checkbox.checked == false) {
       span.style.backgroundImage = '';
       input.style.textDecoration = '';
       input.style.color = 'var(--very-light-grayish-blue)';

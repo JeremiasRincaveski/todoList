@@ -1,16 +1,14 @@
-const checkBoxPrincipal = document.getElementById('inputCheck')
-const inputPrincipal = document.getElementById('input');
-const taskList = document.querySelector('.taskList');
-
 window.addEventListener('load', () => {
-  console.log(checkBoxPrincipal.checked);
   checkBoxPrincipal.checked = false;
   inputPrincipal.value = '';
-  console.log(checkBoxPrincipal.checked);
 })
+
+setTimeout(() => console.log(checkBoxPrincipal.checked), 500)
 
 inputPrincipal.addEventListener('keydown', (e) => {
   if (e.key == 'Enter') {
+    console.log(inputPrincipal.value, checkBoxPrincipal.checked);
+    footer.style.display = 'flex';
     const li = document.createElement('li');
     const newId = inputPrincipal.value.replaceAll(' ', '');
     li.innerHTML = 
@@ -21,13 +19,15 @@ inputPrincipal.addEventListener('keydown', (e) => {
           <span></span>
         </div>
         
-        <input type="text" id="${newId}" placeholder="Create a new todo..." value="${inputPrincipal.value}">
+        <input type="text" id="${newId}" placeholder="Create a new todo..." value="${inputPrincipal.value}" disabled>
         
         <button>
           <img src="/images/icon-cross.svg" alt="botão de excluir a tarefa">
         </button>
       </div>
     `;
+
+    adicionaItens(inputPrincipal.value, checkBoxPrincipal.checked);
 
     const checkbox = li.querySelector(`#${newId}Check`);
     const span = li.querySelector('span');
@@ -42,8 +42,20 @@ inputPrincipal.addEventListener('keydown', (e) => {
       input.style.color = 'var(--dark-grayish-blue)';
     }
 
+    span.addEventListener('click', () => {
+      // console.log(checkbox.checked, inputPrincipal.value, tarefas);
+      toggleBoll(inputPrincipal.value, checkbox.checked)
+    })
+
     button.addEventListener('click', () => {
       li.remove();
+
+      if (taskList.childNodes.length <= 1) {
+        footer.style.display = 'none';
+      }
+
+      removeItens(inputPrincipal.value);
+      
     })
     
     taskList.insertBefore(li, taskList.firstChild)
