@@ -1,4 +1,5 @@
-const checkBoxPrincipal = document.getElementById('inputCheck')
+const mainTask = document.querySelector('.mainTask div');
+const checkBoxPrincipal = document.getElementById('inputCheck');
 const inputPrincipal = document.getElementById('input');
 const taskList = document.querySelector('.taskList');
 const footer = document.querySelector('.footer');

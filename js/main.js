@@ -5,7 +5,7 @@ window.addEventListener('load', () => {
 })
 
 inputPrincipal.addEventListener('keydown', (e) => {
-  if (e.key == 'Enter') {
+  if (e.key == 'Enter' && !tarefas.some(tarefa => tarefa.nome == inputPrincipal.value)) {
     footer.style.display = 'flex';
     const li = document.createElement('li');
     const newId = inputPrincipal.value.replaceAll(' ', '');
@@ -43,9 +43,7 @@ inputPrincipal.addEventListener('keydown', (e) => {
     button.addEventListener('click', () => {
       li.remove();
 
-      if (taskList.childNodes.length <= 1) {
-        footer.style.display = 'none';
-      }
+      validaFooterDisplay();
 
       removeItens(inputPrincipal.value);
     })
@@ -53,5 +51,15 @@ inputPrincipal.addEventListener('keydown', (e) => {
     taskList.insertBefore(li, taskList.firstChild)
     adicionaRegra(li)
     inputPrincipal.value = '';
+  } else {
+    if (tarefas.some(tarefa => tarefa.nome == inputPrincipal.value)) {
+      const tarefaExistente = document.querySelector(`#${inputPrincipal.value.replaceAll(' ', '')}`).parentElement
+      mainTask.classList.add('error');
+      tarefaExistente.classList.add('error');
+      mainTask.addEventListener('animationend', () => {
+        mainTask.classList.remove('error');
+        tarefaExistente.classList.remove('error');
+      })
+    }
   }
 })
