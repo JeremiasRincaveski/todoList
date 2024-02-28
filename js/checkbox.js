@@ -13,6 +13,7 @@ const adicionaRegra = (elemento) => {
   const input = div.querySelector(`#${idInput}`);
 
   span.addEventListener('click', () => {
+    checkbox.checked = !checkbox.checked;
     console.log(checkbox.checked);
     if (checkbox.checked == false) {
       span.style.backgroundImage = '';
@@ -24,7 +25,6 @@ const adicionaRegra = (elemento) => {
       input.style.color = 'var(--dark-grayish-blue)';
     }
     
-    checkbox.checked = !checkbox.checked;
   })
 }
 
