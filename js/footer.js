@@ -4,7 +4,7 @@ const tarefas = []
 
 const validaItens = () => {
   tarefas.forEach(tarefa => {
-    if (tarefa.isConcluido) {
+    if (tarefa.isConcluido == false) {
       aux++;
     }
   }) 
@@ -23,11 +23,8 @@ const removeItens = nomeRemover => {
   validaItens();
 }
 
-const toggleBoll = ( nomeTarefa, isBool ) => {
-  if(isBool) {
-    // console.log('passou');
-    const index = tarefas.findIndex(tarefa => tarefa.nome == nomeTarefa)
-    tarefas[index].isConcluido = isBool;
-  }
-  validaItens()
+let toggleBoll = ( nomeTarefa, bool ) => {
+  const index = tarefas.findIndex(tarefa => tarefa.nome == nomeTarefa)
+  tarefas[index].isConcluido = bool;
+  validaItens();
 }
