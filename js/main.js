@@ -34,6 +34,8 @@ inputPrincipal.addEventListener('keydown', (e) => {
       </div>
     `;
 
+    li.draggable = true;
+
     adicionaItens(inputPrincipal.value, checkBoxPrincipal.checked);
 
     const checkbox = li.querySelector(`#${newId}Check`);
@@ -51,11 +53,8 @@ inputPrincipal.addEventListener('keydown', (e) => {
 
     button.addEventListener('click', () => {
       li.remove();
-
       validaFooterDisplay();
-
       removeItens(input.value);
-      console.log(tarefas);
     })
     
     taskList.insertBefore(li, taskList.firstChild)

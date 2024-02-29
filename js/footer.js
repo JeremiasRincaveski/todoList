@@ -30,7 +30,6 @@ const removeItens = nomeRemover => {
 let toggleBoll = ( nomeTarefa, bool ) => {
   const index = tarefas.findIndex(tarefa => tarefa.nome == nomeTarefa)
   tarefas[index].isConcluido = bool;
-  console.log(tarefas);
   validaItens();
 };
 
