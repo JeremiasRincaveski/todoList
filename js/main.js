@@ -4,6 +4,15 @@ window.addEventListener('load', () => {
   inputPrincipal.focus();
 })
 
+tema.addEventListener('click', () => {
+  const root = document.documentElement;
+  if (root.className.includes('dark')) {
+    root.classList.remove('dark');
+  } else {
+    root.classList.add('dark');
+  }
+})
+
 inputPrincipal.addEventListener('keydown', (e) => {
   if (e.key == 'Enter' && !tarefas.some(tarefa => tarefa.nome == inputPrincipal.value)) {
     footer.style.display = 'flex';
@@ -45,14 +54,15 @@ inputPrincipal.addEventListener('keydown', (e) => {
 
       validaFooterDisplay();
 
-      removeItens(inputPrincipal.value);
+      removeItens(input.value);
+      console.log(tarefas);
     })
     
     taskList.insertBefore(li, taskList.firstChild)
     adicionaRegra(li)
     inputPrincipal.value = '';
   } else {
-    if (tarefas.some(tarefa => tarefa.nome == inputPrincipal.value)) {
+    if (e.key == 'Enter' && tarefas.some(tarefa => tarefa.nome == inputPrincipal.value)) {
       const tarefaExistente = document.querySelector(`#${inputPrincipal.value.replaceAll(' ', '')}`).parentElement
       mainTask.classList.add('error');
       tarefaExistente.classList.add('error');

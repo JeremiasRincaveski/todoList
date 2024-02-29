@@ -27,4 +27,6 @@
   background: var(--bg-gradient) border-box;
   -webkit-mask: linear-gradient(var(--Very-Light-Gray) 0 0) padding-box,linear-gradient(var(--Very-Light-Gray) 0 0);
   mask-composite: exclude;
+  background-repeat: no-repeat;
+  background-position: center;
 }
