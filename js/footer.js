@@ -5,6 +5,7 @@ const buttonTodos = document.querySelector('[data-button="todos"]');
 const buttonIncompleto = document.querySelector('[data-button="incompleto"]');
 const buttonCompleto = document.querySelector('[data-button="completo"]');
 const buttonLimparCompleto = document.querySelector('[data-button="limparCompleto"]');
+const buttons = document.querySelectorAll('button');
 
 const validaItens = () => {
   tarefas.forEach(tarefa => {
@@ -44,6 +45,9 @@ buttonIncompleto.addEventListener('click', () => {
       item.parentElement.style.display = 'flex';
     }
   })
+
+  limpaClasse();
+  buttonIncompleto.className = 'select';
 });
 
 buttonCompleto.addEventListener('click', () => {
@@ -57,6 +61,9 @@ buttonCompleto.addEventListener('click', () => {
       item.parentElement.style.display = 'flex';
     }
   })
+
+  limpaClasse();
+  buttonCompleto.className = 'select';
 });
 
 buttonTodos.addEventListener('click', () => {
@@ -64,17 +71,20 @@ buttonTodos.addEventListener('click', () => {
   lista.forEach(item => {
     item.parentElement.style.display = 'flex';
   })
+
+  limpaClasse();
+  buttonTodos.className = 'select';
 });
 
 buttonLimparCompleto.addEventListener('click', () => {
   const lista = document.querySelectorAll('.taskList .task');
   lista.forEach(item => {
-    const itemCheckbox = item.querySelector('input').checked;
-    const id = item.querySelector('input').id;
+    const itemCheckbox = item.querySelector('input[type="checkbox"]').checked;
+    const itemText = item.querySelector('input[type="text"]').value;
 
     if (itemCheckbox) {
       item.parentElement.remove();
-      removeItens(id);
+      removeItens(itemText);
     }
   });
 
@@ -85,4 +95,12 @@ let validaFooterDisplay = () => {
   if (taskList.childNodes.length <= 1) {
     footer.style.display = 'none';
   }
+}
+
+const limpaClasse = () => {
+  buttons.forEach(button => {
+    if (button.className.match('select')) {
+      button.classList.remove('select');
+    } 
+  })
 }

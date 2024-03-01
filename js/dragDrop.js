@@ -12,10 +12,12 @@ taskList.addEventListener('dragend', (e) => {
 taskList.addEventListener('dragover', (e) => {
   const applyAfter = getNewPosition(e.clientY);
 
-  if (applyAfter) {
-    applyAfter.insertAdjacentElement('afterend', dragged)
-  } else {
-    taskList.prepend(dragged)
+  if (e.target == dragged) { 
+    if (applyAfter) {
+      applyAfter.insertAdjacentElement('afterend', dragged)
+    } else {
+      taskList.prepend(dragged)
+    }
   }
 })
 
