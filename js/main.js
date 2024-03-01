@@ -2,12 +2,13 @@ window.addEventListener('load', () => {
   checkBoxPrincipal.checked = false;
   inputPrincipal.value = '';
   inputPrincipal.focus();
-  adicionarTarefa('Complete Todo App on Frontend Mentor', false);
-  adicionarTarefa('Pick up groceries', false);
-  adicionarTarefa('Read for 1 hour', false);
-  adicionarTarefa('10 minutes meditation', false);
-  adicionarTarefa('Jog around the park 3x', false);
-  adicionarTarefa('Complete online JavaScript course', true);
+
+  tarefas = recuperarTarefas();
+
+
+  tarefasAnteriores.forEach(tarefa => {
+    adicionarTarefa(tarefa.nome, tarefa.isConcluido);
+  })
 })
 
 tema.addEventListener('click', () => {
@@ -88,8 +89,4 @@ const animacaoErro = () => {
     mainTask.classList.remove('error');
     tarefaExistente.classList.remove('error');
   })
-}
-
-const validaInput = () => {
-  
 }
