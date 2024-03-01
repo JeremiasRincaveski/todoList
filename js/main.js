@@ -3,12 +3,16 @@ window.addEventListener('load', () => {
   inputPrincipal.value = '';
   inputPrincipal.focus();
 
-  tarefas = recuperarTarefas();
+  const tarefasArmazenadas = inicializarTarefas();
 
+  console.log(tarefasArmazenadas);
 
-  tarefasAnteriores.forEach(tarefa => {
-    adicionarTarefa(tarefa.nome, tarefa.isConcluido);
-  })
+  if (typeof tarefasArmazenadas == 'Object') {
+    tarefasArmazenadas.forEach(tarefa => {
+      adicionarTarefa(tarefa.nome, tarefa.isConcluido);
+    })
+  }
+
 })
 
 tema.addEventListener('click', () => {
@@ -36,7 +40,6 @@ inputPrincipal.addEventListener('keydown', (e) => {
 const adicionarTarefa = (tarefa, checked = checkBoxPrincipal.checked) => {
   footer.style.display = 'flex';
   const li = document.createElement('li');
-  const newId = tarefa.replaceAll(' ', '');
   li.innerHTML = 
   `
     <div class="task">
@@ -54,8 +57,6 @@ const adicionarTarefa = (tarefa, checked = checkBoxPrincipal.checked) => {
   `;
 
   li.draggable = true;
-
-  adicionaItens(tarefa, checked);
 
   const checkbox = li.querySelector('input[type="checkbox"]');
   const span = li.querySelector('span');
@@ -77,8 +78,10 @@ const adicionarTarefa = (tarefa, checked = checkBoxPrincipal.checked) => {
   })
   
   taskList.insertBefore(li, taskList.firstChild)
-  adicionaRegra(li)
+  adicionaRegra(li);
   inputPrincipal.value = '';
+  
+  adicionaItens(tarefa, checked);
 }
 
 const animacaoErro = () => {

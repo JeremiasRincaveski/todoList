@@ -20,18 +20,21 @@ const validaItens = () => {
 const adicionaItens = (nome, boll) => {
   tarefas.push({nome: nome, isConcluido: boll});
   validaItens();
+  salvarTarefas(tarefas);
 };
 
 const removeItens = nomeRemover => {
   const index = tarefas.findIndex(tarefa => tarefa.nome == nomeRemover);
   tarefas.splice(index, 1);
   validaItens();
+  salvarTarefas(tarefas);
 };
 
 let toggleBoll = ( nomeTarefa, bool ) => {
   const index = tarefas.findIndex(tarefa => tarefa.nome == nomeTarefa)
   tarefas[index].isConcluido = bool;
   validaItens();
+  salvarTarefas(tarefas);
 };
 
 buttonIncompleto.addEventListener('click', () => {

@@ -26,10 +26,21 @@ const tarefasIniciais = [
 ]
 
 const salvarTarefas = (tarefas) => {
-  localStorage.setItem('tarefas', JSON.stringify(tarefas))
+  localStorage.setItem('tarefas', JSON.stringify(tarefas));
 }
 
 const recuperarTarefas = () => {
   const tarefasLocalStorage = localStorage.getItem('tarefas');
-  return tarefasLocalStorage ? JSON.parse(tarefasLocalStorage) : []; 
+  return tarefasLocalStorage ? JSON.stringify(tarefasLocalStorage) : [];
+}
+
+const inicializarTarefas = () => {
+  console.log(localStorage.getItem('primeiroLogin'));
+  if (true) {
+    salvarTarefas(tarefasIniciais);
+    localStorage.setItem('primeiroLogin', 'false')
+    return recuperarTarefas();
+  } else {
+    return recuperarTarefas();
+  }
 }
