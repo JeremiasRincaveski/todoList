@@ -3,16 +3,15 @@ window.addEventListener('load', () => {
   inputPrincipal.value = '';
   inputPrincipal.focus();
 
-  const tarefasArmazenadas = inicializarTarefas();
-
-  console.log(tarefasArmazenadas);
-
-  if (typeof tarefasArmazenadas == 'Object') {
-    tarefasArmazenadas.forEach(tarefa => {
-      adicionarTarefa(tarefa.nome, tarefa.isConcluido);
+  iniciarBanco()
+  .then(() => {
+    tarefas.forEach(tarefa => {
+      adicionarTarefa(tarefa.nome, tarefa.iscompleto)
     })
-  }
-
+  })
+  .then(() => 
+  validaItens())
+    
 })
 
 tema.addEventListener('click', () => {
@@ -29,7 +28,9 @@ tema.addEventListener('click', () => {
 
 inputPrincipal.addEventListener('keydown', (e) => {
   if (e.key == 'Enter' && !tarefas.some(tarefa => tarefa.nome == inputPrincipal.value)) {
+    adicionarTarefaBanco(inputPrincipal.value, checkBoxPrincipal.checked)
     adicionarTarefa(inputPrincipal.value);
+    validaItens();
   } else {
     if (e.key == 'Enter' && tarefas.some(tarefa => tarefa.nome == inputPrincipal.value)) {
       animacaoErro();
@@ -80,12 +81,10 @@ const adicionarTarefa = (tarefa, checked = checkBoxPrincipal.checked) => {
   taskList.insertBefore(li, taskList.firstChild)
   adicionaRegra(li);
   inputPrincipal.value = '';
-  
-  adicionaItens(tarefa, checked);
 }
 
 const animacaoErro = () => {
-  const tarefaExistente = document.querySelector(`#${inputPrincipal.value.replaceAll(' ', '')}`).parentElement
+  const tarefaExistente = document.querySelector(`input[value="${inputPrincipal.value}`).parentElement
   mainTask.classList.add('error');
   tarefaExistente.classList.add('error');
   mainTask.addEventListener('animationend', () => {

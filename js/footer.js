@@ -9,7 +9,7 @@ const buttons = document.querySelectorAll('button');
 
 const validaItens = () => {
   tarefas.forEach(tarefa => {
-    if (tarefa.isConcluido == false) {
+    if (tarefa.iscompleto == false) {
       aux++;
     }
   }) 
@@ -18,23 +18,25 @@ const validaItens = () => {
 }
 
 const adicionaItens = (nome, boll) => {
-  tarefas.push({nome: nome, isConcluido: boll});
+  tarefas.push({nome: nome, iscompleto: boll});
   validaItens();
-  salvarTarefas(tarefas);
+  // salvarTarefas(tarefas);
 };
 
 const removeItens = nomeRemover => {
   const index = tarefas.findIndex(tarefa => tarefa.nome == nomeRemover);
   tarefas.splice(index, 1);
   validaItens();
-  salvarTarefas(tarefas);
+  // salvarTarefas(tarefas);
+  deletarTarefaBanco(nomeRemover)
 };
 
 let toggleBoll = ( nomeTarefa, bool ) => {
   const index = tarefas.findIndex(tarefa => tarefa.nome == nomeTarefa)
-  tarefas[index].isConcluido = bool;
+  tarefas[index].iscompleto = bool;
   validaItens();
-  salvarTarefas(tarefas);
+  modificaTarefaBanco(nomeTarefa, bool)
+  // salvarTarefas(tarefas);
 };
 
 buttonIncompleto.addEventListener('click', () => {
